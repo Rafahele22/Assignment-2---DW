@@ -1,4 +1,5 @@
 const WEATHER_API = 'https://api.open-meteo.com/v1/forecast';
+const air_API = '';
 
 export async function getWeatherData(latitude, longitude) {
   try {
