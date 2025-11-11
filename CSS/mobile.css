@@ -1,0 +1,16 @@
+/*Mobile*/
+@media (max-width: 600px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 100vh 1fr;
+  }
+
+}
+
+/* Tablet*/
+@media (min-width: 601px) and (max-width: 1024px) {
+  body {
+
+  }
+  
+}
