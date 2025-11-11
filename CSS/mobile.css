@@ -83,7 +83,6 @@ body>section:nth-child(2){
 .Contentor4ten{
     width: 79vw;
     overflow-x: scroll;
-    display: none;
 }
 
 .dateBox {
