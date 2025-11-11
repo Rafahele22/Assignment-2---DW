@@ -162,8 +162,7 @@ body>section:nth-child(1)>div:nth-child(2){
 body>section:nth-child(2){
     overflow-x: hidden;
     display: grid;
-    grid-template-rows: auto auto auto;
-    padding-top: 7vh;
+    grid-template-rows: 7vh auto auto auto;
     padding-bottom: 2vh;
 }
 

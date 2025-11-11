@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/CSS/style.css">
-    <link rel="stylesheet" href="/CSS/animation.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/animation.css">
     <title>Tempo</title>
 </head>
 <body>
@@ -75,6 +75,31 @@
 
     <!-- -->
     <section>
+        <div class="center">
+            <form id="searchForm" action="/Search" method="GET" onsubmit="return handleSubmit(event)">
+                <input type="text" id="searchInput" name="city" placeholder="Search city...">
+            </form>
+            <div class="searchResult" style="display: none;">
+                <div class="localBox">
+                    <div>
+                        <span>Hamburg</span>
+                        <span>,Germany</span>
+                    </div>
+                    <div>
+                        <span>Hamburg</span>
+                        <span>,Germany</span>
+                    </div>
+                    <div>
+                        <span>Hamburg</span>
+                        <span>,Germany</span>
+                    </div>
+                    <div>
+                        <span>Hamburg</span>
+                        <span>,Germany</span>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div>
             <div class="ContentorSpan">
                 <span class="center unSelect">Hour</span>
