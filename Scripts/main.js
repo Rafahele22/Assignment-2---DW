@@ -3,6 +3,7 @@ import { getAirQualityData } from './airAPI.js';
 import { getWeatherSVG, getCloudSVG } from './svgCreator.js';
 import { updateUVIndex, updateHumidity, updatePressure } from './indexes.js';
 import { updateMainAirQuality, updateAirDetail, getAQILevel } from './airIndexes.js';
+import { getWeatherDescription } from './weatherDescriptions.js';
 
 let weatherData = null;
 let airQualityData = null;
@@ -31,6 +32,88 @@ function getHourFromDatetime(datetime) {
   return `${String(date.getHours()).padStart(2, '0')}:00`;
 }
 
+function updateLocationName(latitude, longitude) {
+  try {
+    if (typeof window.findClosestCity === 'function') {
+      const closestCity = window.findClosestCity(latitude, longitude);
+      
+      if (closestCity) {
+        document.querySelector('.localInfo').textContent = `${closestCity.name}, ${closestCity.country}`;
+      } else {
+        document.querySelector('.localInfo').textContent = `${latitude.toFixed(2)}, ${longitude.toFixed(2)}`;
+      }
+    } else {
+      document.querySelector('.localInfo').textContent = `${latitude.toFixed(2)}, ${longitude.toFixed(2)}`;
+    }
+  } catch (error) {
+    console.error('Error updating location name:', error);
+    document.querySelector('.localInfo').textContent = `${latitude.toFixed(2)}, ${longitude.toFixed(2)}`;
+  }
+}
+
+function updateDataForHour(hourIndex) {
+  if (!weatherData) return;
+  
+  console.log('Updating for hour index:', hourIndex);
+  console.log('Hourly data:', weatherData.hourly);
+  
+  const temp = Math.round(weatherData.hourly.temperature_2m[hourIndex]);
+  const feelsLike = Math.round(weatherData.hourly.apparent_temperature[hourIndex]);
+  const weatherCode = weatherData.hourly.weather_code[hourIndex];
+  const weatherDescription = getWeatherDescription(weatherCode);
+  const weatherIcon = getWeatherSVG(weatherCode);
+  const windSpeed = Math.round(weatherData.hourly.wind_speed_10m[hourIndex]);
+  const precipitation = weatherData.hourly.precipitation[hourIndex];
+  const humidity = weatherData.hourly.relative_humidity_2m[hourIndex];
+  const pressure = weatherData.hourly.surface_pressure[hourIndex];
+  const clouds = weatherData.hourly.cloud_cover[hourIndex];
+  
+  console.log('Hour data:', { temp, feelsLike, weatherCode, windSpeed, precipitation });
+  
+  document.querySelector('.tempPrinc .center').innerHTML = weatherIcon;
+  document.querySelector('.tempPrinc > span').textContent = `${temp}°`;
+  document.querySelector('.actualStatus span:nth-child(1)').textContent = weatherDescription;
+  document.querySelector('.actualStatus span:nth-child(2)').textContent = `Feel like ${feelsLike}°`;
+  document.querySelector('.windHumityContentor div:nth-child(1) span:nth-child(2)').textContent = `${windSpeed} km/h`;
+  document.querySelector('.windHumityContentor div:nth-child(2) span:nth-child(2)').textContent = precipitation > 0 ? `${precipitation.toFixed(1)} mm` : 'None';
+  
+  const uvIndex = weatherData.daily.uv_index_max[0];
+  updateUVIndex(uvIndex);
+  updateHumidity(humidity);
+  updatePressure(pressure, clouds);
+}
+
+function updateDataForDay(dayIndex) {
+  if (!weatherData) return;
+  
+  console.log('Updating for day index:', dayIndex);
+  console.log('Daily data:', weatherData.daily);
+  
+  const tempMax = Math.round(weatherData.daily.temperature_2m_max[dayIndex]);
+  const tempMin = Math.round(weatherData.daily.temperature_2m_min[dayIndex]);
+  const weatherCode = weatherData.daily.weather_code[dayIndex];
+  const weatherDescription = getWeatherDescription(weatherCode);
+  const weatherIcon = getWeatherSVG(weatherCode);
+  const windSpeed = Math.round(weatherData.daily.wind_speed_10m_max[dayIndex]);
+  const precipitation = weatherData.daily.precipitation_sum[dayIndex];
+  const uvIndex = weatherData.daily.uv_index_max[dayIndex];
+  
+  const avgTemp = Math.round((tempMax + tempMin) / 2);
+  
+  console.log('Day data:', { avgTemp, tempMin, tempMax, weatherCode, windSpeed, precipitation });
+  
+  document.querySelector('.tempPrinc .center').innerHTML = weatherIcon;
+  document.querySelector('.tempPrinc > span').textContent = `${avgTemp}°`;
+  document.querySelector('.actualStatus span:nth-child(1)').textContent = weatherDescription;
+  document.querySelector('.actualStatus span:nth-child(2)').textContent = `${tempMin}° - ${tempMax}°`;
+  document.querySelector('.windHumityContentor div:nth-child(1) span:nth-child(2)').textContent = `${windSpeed} km/h`;
+  document.querySelector('.windHumityContentor div:nth-child(2) span:nth-child(2)').textContent = precipitation > 0 ? `${precipitation.toFixed(1)} mm` : 'None';
+  
+  updateUVIndex(uvIndex);
+  updateHumidity(weatherData.current.humidity);
+  updatePressure(weatherData.current.pressure, weatherData.current.clouds);
+}
+
 function updateMainWeather() {
   if (!weatherData) return;
   const now = new Date();
@@ -42,7 +125,8 @@ function updateMainWeather() {
   
   console.log(weatherData);
 
-  //document.querySelector('.localInfo').textContent = `Lat: ${weatherData.location.latitude.toFixed(2)}, Lon: ${weatherData.location.longitude.toFixed(2)}`;
+  updateLocationName(weatherData.location.latitude, weatherData.location.longitude);
+  
   document.querySelector('.day').textContent = dayName;
   document.querySelector('.date').textContent = date;
 
@@ -54,6 +138,9 @@ function updateMainWeather() {
   iconContainer.innerHTML = weatherIcon;
 
   document.querySelector('.tempPrinc > span').textContent = `${temp}°`;
+  
+  const weatherDescription = getWeatherDescription(weatherCode);
+  document.querySelector('.actualStatus span:nth-child(1)').textContent = weatherDescription;
   document.querySelector('.actualStatus span:nth-child(2)').textContent = `Feel like ${feelsLike}°`;
   
   const windSpeed = weatherData.current.windSpeed;
@@ -75,6 +162,7 @@ function fillWeeklyForecast(dailyData) {
 
     const dateBox = document.createElement('div');
     dateBox.className = 'dateBox';
+    if (i === 0) dateBox.classList.add('selected');
     dateBox.innerHTML = `
       <div>${dayName}</div>
       <div class="center">
@@ -85,6 +173,13 @@ function fillWeeklyForecast(dailyData) {
         <span> ${tempMin}°</span>
       </div>
     `;
+    
+    dateBox.addEventListener('click', () => {
+      document.querySelectorAll('.dateBox').forEach(box => box.classList.remove('selected'));
+      dateBox.classList.add('selected');
+      updateDataForDay(i);
+    });
+    
     container.appendChild(dateBox);
   });
 }
@@ -113,6 +208,7 @@ function fillHourlyForecast(hourlyData) {
 
     const dateBox = document.createElement('div');
     dateBox.className = 'dateBox';
+    if (index === 0) dateBox.classList.add('selected');
     dateBox.innerHTML = `
       <div>${hour}</div>
       <div class="center">
@@ -123,6 +219,14 @@ function fillHourlyForecast(hourlyData) {
         <span style="display:none;"></span>
       </div>
     `;
+    
+    const hourIndex = startIndex + index;
+    dateBox.addEventListener('click', () => {
+      document.querySelectorAll('.dateBox').forEach(box => box.classList.remove('selected'));
+      dateBox.classList.add('selected');
+      updateDataForHour(hourIndex);
+    });
+    
     container.appendChild(dateBox);
   }
 }

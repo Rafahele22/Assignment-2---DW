@@ -10,6 +10,34 @@ async function loadCities() {
   }
 }
 
+function findClosestCity(latitude, longitude) {
+  if (citiesData.length === 0) return null;
+  
+  let closestCity = null;
+  let minDistance = Infinity;
+  
+  const lat1 = parseFloat(latitude);
+  const lon1 = parseFloat(longitude);
+  
+  for (const city of citiesData) {
+    const lat2 = parseFloat(city.lat);
+    const lon2 = parseFloat(city.lng);
+    
+    const distance = Math.sqrt(Math.pow(lat1 - lat2, 2) + Math.pow(lon1 - lon2, 2));
+    
+    if (distance < minDistance) {
+      minDistance = distance;
+      closestCity = city;
+    }
+    
+    if (minDistance < 0.01) break;
+  }
+  
+  return closestCity;
+}
+
+window.findClosestCity = findClosestCity;
+
 function searchCities(query) {
   if (!query || query.length < 2) return [];
   

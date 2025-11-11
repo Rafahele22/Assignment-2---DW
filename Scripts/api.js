@@ -7,8 +7,8 @@ export async function getWeatherData(latitude, longitude) {
       latitude: latitude,
       longitude: longitude,
       current: 'temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,cloud_cover,wind_speed_10m,pressure_msl',
-      hourly: 'temperature_2m,weather_code,cloud_cover',
-      daily: 'temperature_2m_max,temperature_2m_min,weather_code,uv_index_max',
+      hourly: 'temperature_2m,apparent_temperature,weather_code,cloud_cover,wind_speed_10m,precipitation,relative_humidity_2m,surface_pressure',
+      daily: 'temperature_2m_max,temperature_2m_min,weather_code,uv_index_max,wind_speed_10m_max,precipitation_sum',
       timezone: 'auto',
       forecast_days: 7
     });

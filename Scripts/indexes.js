@@ -49,10 +49,8 @@ export const updatePressure = (pressureValue, cloudValue) => {
   const pressureBox = document.querySelector('.contentorBoxInfo .elementBox:nth-child(3)');
   const { label, color } = getPressureLevel(pressureValue);
   const cloudCircle = pressureBox.querySelector('.progress2');
-  const cloudText = pressureBox.querySelector('.value');
   const pressureText = pressureBox.querySelector('.elementBoxSpan .values span:nth-child(1)');
   const pressureLabel = pressureBox.querySelector('.elementBoxSpan .values span:nth-child(2)');
-  cloudText.textContent = `${Math.round(cloudValue)}%`;
   pressureText.textContent = `${Math.round(pressureValue)} hPa`;
   pressureLabel.textContent = label;
   cloudCircle.style.stroke = color;

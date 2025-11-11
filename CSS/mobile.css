@@ -20,7 +20,7 @@ body>section:nth-child(1) span, body>section:nth-child(1) svg{
 }
 
 body>section:nth-child(1)>div {
-    padding: 0vw;
+    padding: 3vw;
     max-width: 90%;
 }
 
@@ -35,6 +35,34 @@ body>section:nth-child(1)>div.pesquisa {
     max-width: 80vw;
 }
 
+.bottomBox>span {
+    display: none;
+}
+
+.AirDetails{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    /* row-gap: 7.5vh; */
+    padding-top: 1vh;
+    z-index: 0;
+    width: min-content;
+    row-gap: 0.5vh;
+    column-gap: 10vw;
+}
+
+.AirDetails span{
+    font-size: 1.5vh;
+}
+
+.circular-chart2 {
+    width: 6vh;
+    height: 6vh;
+}
+
+.AirDetails>div>div:nth-child(2) {
+    justify-content: left;
+}
 
 .tempPrinc > div:nth-child(1) {
     position: absolute;
@@ -81,7 +109,7 @@ body>section:nth-child(2){
 }
 
 .Contentor4ten{
-    width: 79vw;
+    width: 83vw;
     overflow-x: scroll;
 }
 
@@ -158,6 +186,9 @@ span{
     padding-left: 1.5vw;
 }
 
+.AirQualityContentor {
+    grid-template-rows: 7vh 1fr 1vh;
+}
 }
 
 /* Tablet*/

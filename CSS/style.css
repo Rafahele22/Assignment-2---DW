@@ -156,7 +156,7 @@ body>section:nth-child(1)>div:nth-child(2){
 }
 
 .actualStatus span:nth-child(1){
-    font-size: 6vh;
+    font-size: 3vh;
     padding-bottom: 1vh;
     font-weight: 600;
 }
@@ -264,6 +264,11 @@ section:nth-child(2)>div:nth-child(2) {
     transform: scale(1.05);
 }
 
+.dateBox.selected{
+    outline: 3px solid #4A90E2;
+    outline-offset: -3px;
+}
+
 .dateBox>div:nth-child(1){
     text-align: center;
     align-content: center;
@@ -311,7 +316,7 @@ section:nth-child(2)>div:nth-child(2) {
     grid-template-rows: 30% 1fr;
     grid-template-columns: 1fr 1fr;
 
-    column-gap: 2vw;
+    column-gap: 1vw;
     padding-bottom: 1vh;
 }
 
