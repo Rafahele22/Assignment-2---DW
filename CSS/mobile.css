@@ -36,7 +36,11 @@ body>section:nth-child(1)>div.pesquisa {
 }
 
 
-
+.tempPrinc > div:nth-child(1) {
+    position: absolute;
+    height: 36vh;
+    width: 100vw;
+}
 
 
 
@@ -134,8 +138,7 @@ body>section:nth-child(1)>div:nth-child(2) span{
 }
 
 .AirText>span:nth-child(2) {
-    width: 80%;
-    font-size: 2vh;
+    display: none;
 }
 
 div,span,section,body{

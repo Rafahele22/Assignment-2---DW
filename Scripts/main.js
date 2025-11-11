@@ -94,19 +94,21 @@ function fillHourlyForecast(hourlyData) {
   container.innerHTML = '';
 
   const now = new Date();
-  const currentHour = now.getHours();
   
   const startIndex = hourlyData.time.findIndex(time => {
     const date = new Date(time);
-    return date.getHours() === currentHour && date.getDate() === now.getDate();
+    return date >= now;
   });
 
-  const endIndex = startIndex + 24;
+  if (startIndex === -1) return;
 
-  hourlyData.time.slice(startIndex, endIndex).forEach((datetime, i) => {
+  const endIndex = Math.min(startIndex + 24, hourlyData.time.length);
+  const hoursToShow = hourlyData.time.slice(startIndex, endIndex);
+
+  for (const [index, datetime] of hoursToShow.entries()) {
     const hour = getHourFromDatetime(datetime);
-    const temp = Math.round(hourlyData.temperature_2m[startIndex + i]);
-    const weatherCode = hourlyData.weather_code[startIndex + i];
+    const temp = Math.round(hourlyData.temperature_2m[startIndex + index]);
+    const weatherCode = hourlyData.weather_code[startIndex + index];
     const weatherIcon = getWeatherSVG(weatherCode);
 
     const dateBox = document.createElement('div');
@@ -118,11 +120,11 @@ function fillHourlyForecast(hourlyData) {
       </div>
       <div class="center">
         <span>${temp}°</span>
-        <span></span>
+        <span style="display:none;"></span>
       </div>
     `;
     container.appendChild(dateBox);
-  });
+  }
 }
 
 const updateAirQuality = () => {
