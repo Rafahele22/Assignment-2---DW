@@ -10,9 +10,13 @@ let currentView = 'week';
 
 function getURLParams() {
   const params = new URLSearchParams(window.location.search);
+  const latitude = params.get('latitude');
+  const longitude = params.get('longitude');
+  
+  //caso erro
   return {
-    latitude: params.get('latitude'),
-    longitude: params.get('longitude')
+    latitude: latitude || 38.7223,
+    longitude: longitude || -9.1393
   };
 }
 
