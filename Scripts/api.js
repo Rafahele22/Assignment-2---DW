@@ -7,18 +7,16 @@ export async function getWeatherData(latitude, longitude) {
       latitude: latitude,
       longitude: longitude,
       current: 'temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,cloud_cover,wind_speed_10m,pressure_msl',
-      daily: 'temperature_2m_max,temperature_2m_min,weather_code',
-      timezone: 'auto'
+      hourly: 'temperature_2m,weather_code,cloud_cover',
+      daily: 'temperature_2m_max,temperature_2m_min,weather_code,uv_index_max',
+      timezone: 'auto',
+      forecast_days: 7
     });
-    
     const response = await fetch(`${WEATHER_API}?${params}`);
-    
     if (!response.ok) {
       throw new Error('Failed to fetch weather data');
     }
-    
     const data = await response.json();
-    
     return {
       current: {
         temp: data.current.temperature_2m,
@@ -30,6 +28,7 @@ export async function getWeatherData(latitude, longitude) {
         windSpeed: data.current.wind_speed_10m,
         pressure: data.current.pressure_msl
       },
+      hourly: data.hourly,
       daily: data.daily,
       location: {
         latitude: data.latitude,
@@ -38,7 +37,7 @@ export async function getWeatherData(latitude, longitude) {
       }
     };
   } catch (error) {
-    console.error('Error fetching weather data:', error);
+    console.error('Error rempo data:', error);
     throw error;
   }
 }

@@ -67,7 +67,7 @@
                 <span></span>
             </div>
             <div>
-                <span>Humity</span>
+                <span>Precipitation</span>
                 <span></span>
             </div>
         </div>
@@ -92,38 +92,87 @@
             </div>
         </div>
         <div>
-            <span>Today`s Highlights</span>
+            <span class="IntermedioSpan">Day`s Highlights</span>
             <div class="contentorBoxInfo">
-                <div class="center">
-                    <span>Nuvens</span>
-                    <span>1</span>
+                <div class="elementBox center">
+                    <span>UV Index</span>
+                    <div class="ElementSvg">
+                        <svg viewBox="0 0 100 100" width="100" class="chart uv">
+                            <circle class="bg" cx="50" cy="50" r="45"/>
+                            <circle class="progress" cx="50" cy="50" r="45"/>
+                            <text x="50" y="55" class="value">5</text>
+                            <text x="50" y="75" class="label">UV</text>
+                        </svg>
+                    </div>
+                    <div class="elementBoxSpan">
+                        <div class="values">
+                            <span></span>
+                            <span>Normal</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="center">
+                <div class="elementBox center">
                     <span>Humity</span>
-                    <span>2</span>
+                    <div class="ElementSvg">
+                        <svg viewBox="0 0 100 120" class="humidity-icon" xmlns="http://www.w3.org/2000/svg" style="--humidity:75">
+                            <defs>
+                                <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#4FC3F7"/>
+                                <stop offset="100%" stop-color="#0288D1"/>
+                                </linearGradient>
+                                
+                                <clipPath id="dropShape">
+                                <path d="M50 10 C50 10, 25 45, 25 65 C25 82, 36 95, 50 95 C64 95, 75 82, 75 65 C75 45, 50 10, 50 10 Z"/>
+                                </clipPath>
+                            </defs>
+
+                            <path d="M50 10 C50 10, 25 45, 25 65 C25 82, 36 95, 50 95 C64 95, 75 82, 75 65 C75 45, 50 10, 50 10 Z" 
+                                    fill="none" 
+                                    stroke="#B0E0E6" 
+                                    stroke-width="2.5"
+                                    class="drop-outline"/>
+                            
+                            <g clip-path="url(#dropShape)">
+                                <rect class="water-fill" 
+                                    x="20" 
+                                    y="0" 
+                                    width="60" 
+                                    height="100" 
+                                    fill="url(#waterGradient)"/>
+                                
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="elementBoxSpan">
+                        <div class="values">
+                            <span>27 %</span>
+                            <span>Normal</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="center">
-                    <span>UV</span>
-                    <span>3</span>
-                </div>
-                <div class="center">
-                    <span>UV</span>
-                    <span>4</span>
-                </div>
-                <div class="center">
-                    <span>UV</span>
-                    <span>5</span>
-                </div>
-                <div class="center">
-                    <span>UV</span>
-                    <span>6</span>
+                <div class="elementBox center">
+                    <span>Pressão Atmosférica</span>
+                    <div class="ElementSvg">
+                        <svg viewBox="0 0 100 60" width="100" class="chart clouds">
+                            <path class="bg" d="M10 50 A40 40 0 0 1 90 50" />
+                            <path class="progress2" d="M10 50 A40 40 0 0 1 90 50" />
+                            <text x="50" y="45" class="value">65%</text>
+                            <text x="50" y="58" class="label">Nuvens</text>
+                        </svg>
+                    </div>
+                    <div class="elementBoxSpan">
+                        <div class="values">
+                            <span>27 %</span>
+                            <span>Normal</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div>
             <div class="AirQualityContentor">
-                <span style="grid-area: Title;">Air Quality Index</span>
-                <div style="grid-area: graf;">
+                <span class="spanAirTitle" style="grid-area: Title;">Air Quality Index</span>
+                <div class="graf" style="grid-area: graf;">
                     <svg viewBox="0 0 36 36" class="circular-chart">
                         <path class="circle-bg"
                             d="M18 2.0845
@@ -143,9 +192,153 @@
                     <span>Good</span>
                     <span>Air quality is considered satisfactory, and air pollution poses little or no risk.</span>
                 </div>
+                <div class="bottomBox">
+                    <span id="moreDetailsBottom">+</span>
+                </div>
+                <div class="AirDetails">
+                        <div>
+                            <div>
+                                <svg viewBox="0 0 36 36" class="circular-chart2">
+                                    <path class="circle-bg"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <path class="circle"
+                                        stroke-dasharray="0, 100"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <text x="18" y="21" class="percentage">0</text>
+                                </svg>
+                            </div>
+                            <div>
+                                <span>Ozone</span>
+                                <span>-</span>
+                                <span>0.00 µg/m³</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <svg viewBox="0 0 36 36" class="circular-chart2">
+                                    <path class="circle-bg"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <path class="circle"
+                                        stroke-dasharray="0, 100"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <text x="18" y="21" class="percentage">0</text>
+                                </svg>
+                            </div>
+                            <div>
+                                <span>Nitrogen Dioxide</span>
+                                <span>-</span>
+                                <span>0.00 µg/m³</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <svg viewBox="0 0 36 36" class="circular-chart2">
+                                    <path class="circle-bg"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <path class="circle"
+                                        stroke-dasharray="0, 100"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <text x="18" y="21" class="percentage">0</text>
+                                </svg>
+                            </div>
+                            <div>
+                                <span>PM2.5</span>
+                                <span>-</span>
+                                <span>0.00 µg/m³</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <svg viewBox="0 0 36 36" class="circular-chart2">
+                                    <path class="circle-bg"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <path class="circle"
+                                        stroke-dasharray="0, 100"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <text x="18" y="21" class="percentage">0</text>
+                                </svg>
+                            </div>
+                            <div>
+                                <span>Carbon Monoxide</span>
+                                <span>-</span>
+                                <span>0.00 µg/m³</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <svg viewBox="0 0 36 36" class="circular-chart2">
+                                    <path class="circle-bg"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <path class="circle"
+                                        stroke-dasharray="0, 100"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <text x="18" y="21" class="percentage">0</text>
+                                </svg>
+                            </div>
+                            <div>
+                                <span>PM10</span>
+                                <span>-</span>
+                                <span>0.00 µg/m³</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <svg viewBox="0 0 36 36" class="circular-chart2">
+                                    <path class="circle-bg"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <path class="circle"
+                                        stroke-dasharray="0, 100"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <text x="18" y="21" class="percentage">0</text>
+                                </svg>
+                            </div>
+                            <div>
+                                <span>Sulfur Dioxide</span>
+                                <span>-</span>
+                                <span>0.00 µg/m³</span>
+                            </div>
+                        </div>
+                </div>
             </div>
         </div>
     </section>
      <script type="module" src="/Scripts/main.js"></script>
+     <script src="/Scripts/ui.js"></script>
 </body>
 </html>

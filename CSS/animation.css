@@ -1,37 +1,173 @@
 .circular-chart {
-  max-width: 20vh;
-  max-height: 20vh;
+  width: 20vh;
+  height: 20vh;
 }
-
+.circular-chart2 {
+  width: 12vh;
+  height: 12vh;
+}
 .circle-bg {
   fill: none;
   stroke: #edf0f3;
   stroke-width: 3.8;
 }
-
 .circle {
   fill: none;
   stroke-width: 3.8;
   stroke-linecap: round;
-  stroke: #4cd964; /* verde */
+  stroke: #4cd964;
   transform: rotate(90deg);
   transform-origin: center;
   transition: stroke-dasharray 0.3s;
 }
-
 .percentage {
   fill: #000;
   font-family: sans-serif;
   font-size: 10px;
   text-anchor: middle;
 }
-
 .rays {
   transform-origin: 50% 50%;
   animation: spin 8s linear infinite;
 }
-
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+.princIcon{
+    width: 10vw;
+}
+.secIcon{
+    width: 80%;
+}
+.secIcon2{
+    width: 60%;
+}
+.cloud {
+  animation: moveCloud 5s ease-in-out infinite alternate;
+}
+@keyframes moveCloud {
+  from { transform: translateX(0px); }
+  to { transform: translateX(10px); }
+}
+.raindrops line {
+  animation: fall 0.8s linear infinite;
+}
+.raindrops line:nth-child(2) { 
+    animation-delay: 0.2s; 
+}
+.raindrops line:nth-child(3) { 
+    animation-delay: 0.4s;
+}
+@keyframes fall {
+  0% { transform: translateY(0); opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(10px); opacity: 0; }
+}
+.bg {
+  fill: none;
+  stroke: #e6e6e6;
+  stroke-width: 8;
+}
+.progress {
+  fill: none;
+  stroke: #FFD93B;
+  stroke-width: 8;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  stroke-dasharray: 282.6;
+  stroke-dashoffset: calc(282.6 - (5/11 * 282.6));
+  transition: stroke-dashoffset 0.8s ease;
+}
+.value {
+  text-anchor: middle;
+  font-size: 20px;
+  fill: #333;
+}
+.label {
+  text-anchor: middle;
+  font-size: 10px;
+  fill: #777;
+}
+.humidity-icon {
+  display: block;
+  --humidity: 75;
+  filter: drop-shadow(0 4px 8px rgba(0, 136, 209, 0.3));
+  width: 8vw;
+  column-gap: 2vh;
+}
+.drop-outline {
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.water-fill {
+  transform-origin: center bottom;
+  transform: translateY(100%);
+  animation: fillWater 2s ease-out forwards;
+}
+.wave {
+  animation: waveMotion 3s ease-in-out infinite;
+  transform-origin: center;
+}
+.highlight {
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards 1.5s;
+}
+@keyframes fillWater {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(calc(100% - var(--humidity) * 1%));
+  }
+}
+@keyframes waveMotion {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(-5px) translateY(-2px);
+  }
+  75% {
+    transform: translateX(5px) translateY(-2px);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.clouds .bg {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 6;
+}
+.clouds .progress2 {
+  fill: none;
+  stroke: #9ec5fe;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 126;
+  stroke-dashoffset: calc(126 - (65/100 * 126));
+  transform-origin: center;
+  animation: gauge 1.2s ease-out forwards;
+}
+.clouds .value {
+  text-anchor: middle;
+  font-size: 14px;
+  fill: #333;
+}
+.clouds .label {
+  text-anchor: middle;
+  font-size: 9px;
+  fill: #666;
+}
+@keyframes gauge {
+  from { stroke-dashoffset: 126; }
+  to { stroke-dashoffset: calc(126 - (65/100 * 126)); }
 }
