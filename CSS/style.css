@@ -2,7 +2,7 @@
 
 body{
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;
 
     height: 100vh;
     width: 100vw;
@@ -49,6 +49,14 @@ body>section:nth-child(1)>div{
 
     z-index: 1;
 } 
+
+.searchForm1{
+    display: none;
+}
+
+.searchForm2{
+    display: block;
+}
 
 .searchResult{
     position: absolute;
