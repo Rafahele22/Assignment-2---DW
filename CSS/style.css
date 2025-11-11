@@ -63,8 +63,14 @@ body>section:nth-child(1)>div{
     top: 6vh;
     width: 19.25vw;
     background-color: rgb(245, 245, 245);
-    z-index: 0;
+    z-index: 100;
+    border-radius: 10pt;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
+#searchInput2{
+    
+}
+    
 
 .localBox{
     width: 100%;
@@ -81,6 +87,12 @@ body>section:nth-child(1)>div{
 .localBox>div{
     padding: 0.5vw;
     background-color: rgb(250,250,250);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.localBox>div:hover{
+    background-color: rgb(240,240,240);
 }
 
 .localBox span{

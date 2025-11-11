@@ -10,11 +10,11 @@
 </head>
 <body>
     <section>
-        <div class="center">
-            <form class="searchForm1" id="searchForm" action="/Search" method="GET" onsubmit="return handleSubmit(event)">
-                <input type="text" id="searchInput" name="city" placeholder="Search city...">
+        <div class="center pesquisa">
+            <form class="searchForm1" id="searchForm1" onsubmit="return false;">
+                <input type="text" id="searchInput1" name="city" placeholder="Search city...">
             </form>
-            <div class="searchResult" style="display: none;">
+            <div class="searchResult searchResult1" style="display: none;">
                 <div class="localBox">
                     <div>
                         <span>Hamburg</span>
@@ -77,10 +77,10 @@
     <!-- -->
     <section>
         <div class="center">
-            <form class="searchForm2" id="searchForm" action="/Search" method="GET" onsubmit="return handleSubmit(event)">
-                <input type="text" id="searchInput" name="city" placeholder="Search city...">
+            <form class="searchForm2" id="searchForm2" onsubmit="return false;" style="z-index: 12;">
+                <input type="text" id="searchInput2" name="city" placeholder="Search city..." >
             </form>
-            <div class="searchResult" style="display: none;">
+            <div class="searchResult searchResult2" style="display: none; z-index: 11;">
                 <div class="localBox">
                     <div>
                         <span>Hamburg</span>
@@ -177,7 +177,7 @@
                     </div>
                 </div>
                 <div class="elementBox center">
-                    <span>Pressão Atmosférica</span>
+                    <span>P. Atmosférica</span>
                     <div class="ElementSvg">
                         <svg viewBox="0 0 100 60" width="100" class="chart clouds">
                             <path class="bg" d="M10 50 A40 40 0 0 1 90 50" />
@@ -364,6 +364,7 @@
             </div>
         </div>
     </section>
+     <script src="./Scripts/search.js"></script>
      <script type="module" src="./Scripts/main.js"></script>
      <script src="./Scripts/ui.js"></script>
 </body>

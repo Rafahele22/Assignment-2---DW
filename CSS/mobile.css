@@ -5,15 +5,57 @@ body {
     /* height: 100vh; */
     width: 100vw;
 
-    grid-template-columns: 1fr;
+    grid-template-columns: 100vw;
     grid-template-rows: 100vh 1fr;
+    overflow-x: hidden;
 }
+
+body>section:nth-child(1){
+    width: 100vw;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+body>section:nth-child(1) span, body>section:nth-child(1) svg{
+}
+
+body>section:nth-child(1)>div {
+    padding: 0vw;
+    max-width: 90%;
+}
+
+body>section:nth-child(1)>div.pesquisa {
+    padding: 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#searchInput1 {
+    max-width: 80vw;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 body>section:nth-child(2){
     overflow-x: visible;
     grid-template-rows: auto auto auto;
-    padding: 2vh;
+    max-width: 90vw;
 }
+
 
 .searchForm1{
     display: block;
@@ -23,14 +65,92 @@ body>section:nth-child(2){
     display: none;
 }
 
+.searchResult1{
+    position: relative;
+    width: 80vw;
+    top: 2vh;
+    z-index: 100;
+}
+
+.searchResult1 .localBox{
+    max-height: 20vh;
+}
+
 .Contentor4ten{
-    width: 100vw;
+    width: 79vw;
+    overflow-x: scroll;
+    display: none;
 }
 
 .dateBox {
     width: 30vw;
 }
 
+.contentorBoxInfo > div {
+    width: 38vw;
+    height: 15vh;
+}
+
+.elementBox > span:nth-child(1) {
+    font-size: 1.75vh;
+    padding-left: 6vw;
+}
+
+.ElementSvg > svg{
+    width: 15vw;
+    padding-left: 2vw;
+}
+
+section:nth-child(2)>div {
+    width: 79vw;
+}
+
+.values > span:nth-child(1) {
+    font-size: 1.5vh;
+}
+
+.values > span:nth-child(2) {
+    font-size: 1.75vh;
+}
+
+body>section:nth-child(1)>div:nth-child(2) span{
+    width: fit-content;
+}
+
+.AirQualityContentor>span {
+    font-size: 2.5vh;
+    font-weight: 600;
+    padding-left: 1.5vw;
+    padding-top: 1.5vw;
+}
+
+.circular-chart {
+    width: 8vh;
+    height: 8vh;
+}
+
+.AirText>span:nth-child(1) {
+    font-size: 3.5vh;
+}
+
+.AirText>span:nth-child(2) {
+    width: 80%;
+    font-size: 2vh;
+}
+
+div,span,section,body{
+    padding: 0vw;
+}
+
+
+
+section, div, span{
+    padding-left: 0vw;
+} 
+
+span{
+    width: fit-content;
+}
 }
 
 /* Tablet*/
